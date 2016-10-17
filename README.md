@@ -4,7 +4,7 @@ The `newman` plugin provides autocompletion for the [Newman CLI](https://github.
 
 ### Installation
 
-1. Enable the plugin in your `~/.zshrc`:
+1. Copy `_newman` into your Oh-my-zsh plugin folder `~/.oh-my-zsh/plugins` and enable the plugin in your `~/.zshrc`:
   ```
   plugins=(... newman)
   ```
