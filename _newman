@@ -6,7 +6,9 @@
 
 local -a _1st_arguments
 _1st_arguments=(
-  "run":"Start the collection runner"
+  "run":"Start the collection runner."
+  "-v":"Displays the newman version."
+  "-h":"Displays the help."
 )
 
 __run_args() {
