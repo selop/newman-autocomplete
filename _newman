@@ -1,0 +1,44 @@
+#compdef newman
+
+# Newman Autocomplete plugin for Oh-My-Zsh
+# Requires: The Newman command line runner (https://github.com/postmanlabs/newman)
+# Author: Sergej Lopatkin (https://github.com/selop)
+
+local -a _1st_arguments
+_1st_arguments=(
+  "run":"Start the collection runner"
+)
+
+__run_args() {
+  _arguments -C \
+    '(-v|--version)'{-v,--version}'[Display the newman version.]' \
+    '(-e|--environment)'{-e,--environment}'[Specify a URL or Path to a Postman Environment.]' \
+    '(-g|--globals)'{-g,--globals}'[Specify a URL or Path to a file containing Postman Globals.]' \
+    '(-r|--reporters)'{-r,--reporters}'[Specify the reporters to use for this run.]' \
+    '(-k|--insecure)'{-k,--insecure}'[Disables SSL validations.]' \
+    '(-x|--suppress-exit-code)'{-x,--suppress-exit-code}'[Specify whether or not to override the default exit code for the current run.]' \
+    '(-n|--iteration-count)'{-n,--iteration-count}'[Define the number of iterations to run.]' \
+    '(-d|--iteration-data)'{-d,--iteration-data}'[Specify a data file to use for iterations (either json or csv).]' \
+    '(--delay-request)--delay-request[Specify the extent of delay between requests (milliseconds).]' \
+    '(--export-environment)--export-environment[Exports the environment to a file after completing the run.]' \
+    '(--export-globals)--export-globals[Specify an output file to dump Globals before exiting.]' \
+    '(--export-collection)--export-collection[Specify an output file to save the executed collection.]' \
+    '(--bail)--bail[Specify whether or not to gracefully stop a collection run on encountering the first error.]' \
+    '(--silent)--silent[Prevents newman from showing output to CLI.]' \
+    '(--disable-unicode)--disable-unicode[Forces unicode compliant symbols to be replaced by their plain text equivalents.]' \
+    '(--folder)--folder[Run a single folder from a collection.]' \
+    '(--no-color)--no-color[Disable colored output.]' \
+    '*:JSON:_files -g "*.json"' && ret=0
+}
+
+_arguments '*:: :->command'
+
+if (( CURRENT == 1 )); then
+  _describe -t commands "newman command" _1st_arguments
+  return
+fi
+
+case "$words[1]" in
+  run)
+    __run_args ;;
+esac
